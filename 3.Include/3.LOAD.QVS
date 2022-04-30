@@ -1,0 +1,19 @@
+﻿// COMMOM
+$(Must_Include=lib://1.CENIPA/3.Include/MAIN.QVS);
+$(Must_Include=lib://1.CENIPA/3.Include/VARS.QVS);
+
+// LOAD
+set vTableName = 'FATO_OCORRENCIA';
+
+$(vTableName):
+LOAD * FROM [$(vPathTransform)$(vTableName).QVD](QVD);
+
+set vTableName = 'DIM_FATOR';
+
+$(vTableName):
+LOAD * FROM [$(vPathTransform)$(vTableName).QVD](QVD);
+
+set vTableName = 'DIM_AERONAVE';
+
+$(vTableName):
+LOAD * FROM [$(vPathTransform)$(vTableName).QVD](QVD);

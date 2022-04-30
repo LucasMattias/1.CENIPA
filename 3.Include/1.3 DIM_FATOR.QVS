@@ -1,0 +1,15 @@
+﻿set vTableName = 'DIM_FATOR';
+
+$(vTableName):
+LOAD
+    codigo_ocorrencia3,
+    fator_nome,
+    fator_aspecto,
+    fator_condicionante,
+    fator_area
+FROM [lib://1.CENIPA/5.Import/fator_contribuinte.csv]
+(txt, utf8, embedded labels, delimiter is ';', msq);
+
+store $(vTableName) into [$(vPathExtract)$(vTableName).QVD](qvd);
+
+drop Table $(vTableName);

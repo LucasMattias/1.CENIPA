@@ -1,0 +1,14 @@
+﻿set vTableName = 'DIM_FATOR';
+
+$(vTableName):
+LOAD
+    codigo_ocorrencia3 as %KeyFator,
+    fator_nome,
+    fator_aspecto,
+    fator_condicionante,
+    fator_area
+FROM [$(vPathExtract)$(vTableName).QVD](QVD);
+
+store $(vTableName) into [$(vPathTransform)$(vTableName).QVD](qvd);
+
+drop Table $(vTableName);

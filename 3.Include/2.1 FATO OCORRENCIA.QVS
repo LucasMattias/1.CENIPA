@@ -3,8 +3,8 @@
 $(vTableName):
 LOAD
     codigo_ocorrencia,
-    //codigo_ocorrencia1,
-    //codigo_ocorrencia2,
+    codigo_ocorrencia as %KeyAeronave,
+    codigo_ocorrencia2 as %KeyFator,
     //codigo_ocorrencia3,
     //codigo_ocorrencia4,
     ocorrencia_classificacao,
@@ -24,9 +24,8 @@ LOAD
     total_recomendacoes,
     total_aeronaves_envolvidas,
     ocorrencia_saida_pista
-FROM [$(vPathImport)ocorrencia.csv]
-(txt, utf8, embedded labels, delimiter is ';', msq);
+FROM [$(vPathExtract)$(vTableName).QVD](QVD);
 
-store $(vTableName) into [$(vPathExtract)$(vTableName).QVD](qvd);
+store $(vTableName) into [$(vPathTransform)$(vTableName).QVD](qvd);
 
 drop Table $(vTableName);

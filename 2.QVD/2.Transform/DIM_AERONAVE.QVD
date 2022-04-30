@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
  <QvdTableHeader>
    <QvBuildNo>50642</QvBuildNo>
-   <CreatorDoc>C:\Users\D&amp;R automação\Documents\Qlik\Sense\Apps\6.1 EXTRATOR CENIPA.qvf</CreatorDoc>
-   <CreateUtcTime>2022-04-30 03:08:32</CreateUtcTime>
+   <CreatorDoc>C:\Users\D&amp;R automação\Documents\Qlik\Sense\Apps\6.2 TRANSFORMADOR CENIPA.qvf</CreatorDoc>
+   <CreateUtcTime>2022-04-30 17:44:26</CreateUtcTime>
    <SourceCreateUtcTime></SourceCreateUtcTime>
    <SourceFileUtcTime></SourceFileUtcTime>
    <SourceFileSize>-1</SourceFileSize>
@@ -10,7 +10,7 @@
    <TableName>DIM_AERONAVE</TableName>
    <Fields>
      <QvdFieldHeader>
-       <FieldName>codigo_ocorrencia2</FieldName>
+       <FieldName>%KeyAeronave</FieldName>
        <BitOffset>0</BitOffset>
        <BitWidth>13</BitWidth>
        <Bias>0</Bias>
