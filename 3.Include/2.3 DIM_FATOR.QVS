@@ -1,13 +1,27 @@
 ﻿set vTableName = 'DIM_FATOR';
 
+FiltroFato:
+load * inline [ 
+fator_nome
+PERCEPÇÃO
+];
+
+$(vTableName)_TEMP:
+LOAD
+    *
+FROM [$(vPathExtract)$(vTableName).QVD](QVD)
+where exists(fator_nome)
+;
+
 $(vTableName):
 LOAD
-    codigo_ocorrencia3 as %KeyFator,
+    autonumber(codigo_ocorrencia3) as %KeyFator,
+    codigo_ocorrencia3 as fator_codigo,
     fator_nome,
     fator_aspecto,
     fator_condicionante,
     fator_area
-FROM [$(vPathExtract)$(vTableName).QVD](QVD);
+resident $(vTableName)_TEMP;
 
 store $(vTableName) into [$(vPathTransform)$(vTableName).QVD](qvd);
 

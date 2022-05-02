@@ -2,7 +2,8 @@
 
 $(vTableName):
 LOAD
-    codigo_ocorrencia2 as %KeyAeronave,
+    autonumber(codigo_ocorrencia2) as %KeyAeronave,
+    codigo_ocorrencia2 as aeronave_codigo,
     aeronave_matricula,
     aeronave_operador_categoria,
     aeronave_tipo_veiculo,

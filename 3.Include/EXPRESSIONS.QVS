@@ -1,0 +1,21 @@
+//SCRIPT EXPRESSIONS
+
+set vExpNullTratament = if($1 = '***' or
+                            $1 = '****' or
+                            $1 = 'NULL' or
+                            $1 = '' or
+                            $1 = 'A DEFINIR' or
+                            $1 = 'OF Nº 1' or
+                            $1 = '**' or
+                            $1 = '*' or
+                            len($1) = 0 , $2, $1 );
+
+set vExpMultiple3Factor = $1 * $2 * $3;
+
+set vExpDivideZero = $1 / (if($2 = 0, 1, $2));
+
+//GRAPHICS EXPRESSIONS
+
+
+
+//MASTER ITENS EXPRESSIONS

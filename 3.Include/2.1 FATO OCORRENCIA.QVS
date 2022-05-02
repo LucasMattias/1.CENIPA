@@ -1,29 +1,42 @@
 ﻿set vTableName = 'FATO_OCORRENCIA';
 
 $(vTableName):
+LOAD *,
+    $(vExpDivideZero("3Fatores", Divisao)) as campoextra,
+    SubField(divulgacao_relatorio_numero,'/',2) as Orgao,
+    SubField(divulgacao_relatorio_numero,'/',1) as Codigo,
+    SubField(divulgacao_relatorio_numero,'/',3) as Periodo;
 LOAD
-    codigo_ocorrencia,
-    codigo_ocorrencia as %KeyAeronave,
-    codigo_ocorrencia2 as %KeyFator,
+    codigo_ocorrencia as ocorrencia_codigo,
+    autonumber(codigo_ocorrencia) as %KeyAeronave,
+    autonumber(codigo_ocorrencia2) as %KeyFator,
     //codigo_ocorrencia3,
     //codigo_ocorrencia4,
     ocorrencia_classificacao,
-    ocorrencia_latitude,
-    ocorrencia_longitude,
+    //ocorrencia_latitude,
+    $(vExpNullTratament(ocorrencia_latitude,0)) as ocorrencia_latitude,
+    //ocorrencia_longitude,
+    $(vExpNullTratament(ocorrencia_longitude,0)) as ocorrencia_longitude,
     ocorrencia_cidade,
     ocorrencia_uf,
     ocorrencia_pais,
-    ocorrencia_aerodromo,
+    //ocorrencia_aerodromo,
+    $(vExpNullTratament(ocorrencia_aerodromo,'Nulo')) as ocorrencia_aerodromo,
     ocorrencia_dia,
     ocorrencia_hora,
     investigacao_aeronave_liberada,
     investigacao_status,
-    divulgacao_relatorio_numero,
+    //divulgacao_relatorio_numero,
+    $(vExpNullTratament(divulgacao_relatorio_numero, null())) as divulgacao_relatorio_numero,
     divulgacao_relatorio_publicado,
     divulgacao_dia_publicacao,
     total_recomendacoes,
     total_aeronaves_envolvidas,
-    ocorrencia_saida_pista
+    ocorrencia_saida_pista,
+    //CALC
+    $(vExpMultiple3Factor(total_recomendacoes,total_aeronaves_envolvidas, 3.14)) as "3Fatores",
+    $(vExpDivideZero(total_recomendacoes, total_aeronaves_envolvidas)) as Divisao
+
 FROM [$(vPathExtract)$(vTableName).QVD](QVD);
 
 store $(vTableName) into [$(vPathTransform)$(vTableName).QVD](qvd);
